@@ -26,10 +26,15 @@ public class StackGUI extends javax.swing.JFrame {
         String productType = txtProductType.getText();
         
         Wagon tWag = new Wagon(name, productType);
+        
         stack.push(tWag);
         
         //Set message in textarea
-        txtareaDisplay.setText("New wagon '" + tWag.getWagonName() + "' added to stack!");
+        if(stack.size() > 5){
+            txtareaDisplay.setText("Warning!! \nThe train is too big(" + stack.size() + " wagons) and its becoming a danger. Please remove wagons so the train has less than five");
+        }else{
+            txtareaDisplay.setText("New wagon '" + tWag.getWagonName() + "' added to stack!");
+        }
         
         //Clear fields
         txtName.setText("");
@@ -42,7 +47,14 @@ public class StackGUI extends javax.swing.JFrame {
         if(wagDel == null){
             txtareaDisplay.setText("The train is empty.");
         }else{
-            txtareaDisplay.setText("The first element '" + wagDel.getWagonName() + "' was removed!");
+            if(stack.size() <= 5){
+                txtareaDisplay.setText("The wagon '" + wagDel.getWagonName() + "' was removed!");
+            }else{
+                //Get the remaining wagons that has to be removed to be 5 or less
+                int wagonsToDel = stack.size() - 5;
+                txtareaDisplay.setText("The wagon '" + wagDel.getWagonName() + "' was removed! "
+                        + "\nWarning!! remove " + wagonsToDel + " more wagons");
+            }
         }
         
     }
@@ -61,7 +73,7 @@ public class StackGUI extends javax.swing.JFrame {
     }
     
     private void displayAll(){
-        txtareaDisplay.setText("Contents of the train:\n" + stack.displayStack());
+        txtareaDisplay.setText("Wagons in the train:\n" + stack.displayStack());
     }
     
     private void displaySize(){

@@ -36,6 +36,14 @@ public class Wagon {
 
     @Override
     public String toString() {
-        return "Wagon info: \n" + "Wagon name: " + wagonName + "\nProduct type: " + productType;
+        return """
+               
+               <------------------------------------------------------------->
+               Wagon name: """ + wagonName + 
+                "\nProduct type: " + productType + """ 
+                                                                                               
+               <------------------------------------------------------------->
+               """;
+               
     }
 }
