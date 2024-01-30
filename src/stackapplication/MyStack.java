@@ -64,11 +64,26 @@ public class MyStack implements StackInterface{
         }else{
             Iterator it = stackList.iterator();
             while(it.hasNext()){
-                output += "Stack display: \n";
-                output += "Element " + counter + ": " + (String)it.next() + "\n";
+                output += "Element " + counter + ": " + (String)it.next().toString() + "\n";
+                counter++;
             }
             return output;
         }
     }
-    
+
+    @Override
+    public String emptyStack() {
+        String output = "";
+        if(isEmpty()){
+            output += "Stack is empty now.";
+            return output;
+        }else{
+            Iterator it = stackList.iterator();
+            while(it.hasNext()){
+                Wagon wagDel = (Wagon) pop();
+                output += "\nWagon '" + wagDel.getWagonName() + "' was deleted";
+            }
+            return output;
+        }
+    }
 }

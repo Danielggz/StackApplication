@@ -49,10 +49,6 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="303" max="-2" attributes="0"/>
-                      <Component id="btnAdd" min="-2" pref="141" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnRemoveAll" pref="170" max="32767" attributes="0"/>
@@ -71,6 +67,10 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="238" max="-2" attributes="0"/>
                       <Component id="lblTitle" min="-2" pref="282" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="271" max="-2" attributes="0"/>
+                      <Component id="btnAdd" min="-2" pref="193" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -168,6 +168,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Add New Wagon"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnRemove">
       <Properties>
@@ -176,6 +179,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Remove Wagon"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRemoveActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnFirst">
       <Properties>
@@ -184,6 +190,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="First Wagon"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFirstActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnDisplay">
       <Properties>
@@ -192,6 +201,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Display Wagon Info"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDisplayActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSize">
       <Properties>
@@ -200,6 +212,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Number of Wagons"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSizeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnRemoveAll">
       <Properties>
@@ -208,11 +223,17 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Remove All Wagons"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRemoveAllActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnExit">
       <Properties>
         <Property name="text" type="java.lang.String" value="Exit"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExitActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtProductType">
       <Properties>

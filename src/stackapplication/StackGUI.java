@@ -13,10 +13,63 @@ public class StackGUI extends javax.swing.JFrame {
     /**
      * Creates new form StackGUI
      */
+    MyStack stack;
+    
     public StackGUI() {
         initComponents();
+        
+        stack = new MyStack();
     }
-
+    
+    private void add(){
+        String name = txtName.getText();
+        String productType = txtProductType.getText();
+        
+        Wagon tWag = new Wagon(name, productType);
+        stack.push(tWag);
+        
+        //Set message in textarea
+        txtareaDisplay.setText("New wagon '" + tWag.getWagonName() + "' added to stack!");
+        
+        //Clear fields
+        txtName.setText("");
+        txtProductType.setText("");
+    }
+    
+    private void delete(){
+        //Get removed object Wagon
+        Wagon wagDel = (Wagon) stack.pop();
+        if(wagDel == null){
+            txtareaDisplay.setText("The train is empty.");
+        }else{
+            txtareaDisplay.setText("The first element '" + wagDel.getWagonName() + "' was removed!");
+        }
+        
+    }
+    
+    private void deleteAll(){
+        txtareaDisplay.setText(stack.emptyStack());
+    }
+    
+    private void displayFirst(){
+        Wagon wagFirst = (Wagon) stack.peek();
+        if(wagFirst == null){
+            txtareaDisplay.setText("The train is empty.");
+        }else{
+            txtareaDisplay.setText("The first wagon is:\n" + wagFirst.toString());
+        }
+    }
+    
+    private void displayAll(){
+        txtareaDisplay.setText("Contents of the train:\n" + stack.displayStack());
+    }
+    
+    private void displaySize(){
+        String output = "The size of the train is " + stack.size();
+        if(stack.size()==1) output += " wagon";
+        else output += " wagons";
+        txtareaDisplay.setText(output);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,23 +112,58 @@ public class StackGUI extends javax.swing.JFrame {
 
         btnAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnAdd.setText("Add New Wagon");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnRemove.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnRemove.setText("Remove Wagon");
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
 
         btnFirst.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnFirst.setText("First Wagon");
+        btnFirst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFirstActionPerformed(evt);
+            }
+        });
 
         btnDisplay.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnDisplay.setText("Display Wagon Info");
+        btnDisplay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDisplayActionPerformed(evt);
+            }
+        });
 
         btnSize.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSize.setText("Number of Wagons");
+        btnSize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSizeActionPerformed(evt);
+            }
+        });
 
         btnRemoveAll.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnRemoveAll.setText("Remove All Wagons");
+        btnRemoveAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveAllActionPerformed(evt);
+            }
+        });
 
         btnExit.setText("Exit");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
         txtProductType.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -106,9 +194,6 @@ public class StackGUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(303, 303, 303)
-                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(172, 172, 172)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnRemoveAll, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
@@ -122,7 +207,10 @@ public class StackGUI extends javax.swing.JFrame {
                         .addComponent(btnDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(238, 238, 238)
-                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(271, 271, 271)
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -161,6 +249,40 @@ public class StackGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        add();
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
+        // TODO add your handling code here:
+        displayFirst();
+    }//GEN-LAST:event_btnFirstActionPerformed
+
+    private void btnSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSizeActionPerformed
+        // TODO add your handling code here:
+        displaySize();
+    }//GEN-LAST:event_btnSizeActionPerformed
+
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+        // TODO add your handling code here:
+        delete();
+    }//GEN-LAST:event_btnRemoveActionPerformed
+
+    private void btnRemoveAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveAllActionPerformed
+        // TODO add your handling code here:
+        deleteAll();
+    }//GEN-LAST:event_btnRemoveAllActionPerformed
+
+    private void btnDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisplayActionPerformed
+        // TODO add your handling code here:
+        displayAll();
+    }//GEN-LAST:event_btnDisplayActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnExitActionPerformed
 
     /**
      * @param args the command line arguments

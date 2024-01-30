@@ -15,6 +15,8 @@ public class StackApp {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        StackGUI gui = new StackGUI();
+        gui.setVisible(true);
     }
     
 }
